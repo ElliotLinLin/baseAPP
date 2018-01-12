@@ -41,18 +41,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,I
         super.initView();
         userName = (EditText) findViewById(R.id.username);
         passWord = (EditText) findViewById(R.id.password);
-        button = (Button) findViewById(R.id.bt);
-    }
+        button= (Button) findViewById(R.id.btq);
+
+     }
 
     @Override
     public void initListener() {
         super.initListener();
         button.setOnClickListener(this);
-    }
+     }
 
     @Override
     public void initData() {
         super.initData();
+      //  mLoginPresenter=new LoginPresenter(this);
         mLoginPresenter=new LoginPresenter();
         mLoginPresenter.attachView(this);
     }
@@ -60,7 +62,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,I
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bt:
+            case R.id.btq:
                 LoginReq loginReq = new LoginReq();
                 loginReq.setName(userName.getText().toString());
                 loginReq.setPassWord(passWord.getText().toString());
@@ -83,17 +85,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,I
 
     @Override
     public void showLoading() {
-
+        showToast("正在登陆。。");
     }
 
     @Override
     public void hideLoading() {
-
+        showToast("登陆完成");
     }
 
     @Override
     public void clearEditContent() {
-    userName.setText("");
+        userName.setText("");
         passWord.setText("");
     }
 
