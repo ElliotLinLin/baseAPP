@@ -1,15 +1,18 @@
-package com.example.lin.mvp;
+package com.example.lin.mvp.ui.mainui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.lin.mvp.R;
 import com.example.lin.mvp.bean.LoginReq;
 import com.example.lin.mvp.bean.LoginResponse;
 import com.example.lin.mvp.presenter.LoginPresenter;
 import com.example.lin.mvp.ui.base.BaseActivity;
+import com.example.lin.mvp.util.AppManager;
 import com.example.lin.mvp.view.IUserLoginView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener,IUserLoginView{
@@ -25,6 +28,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,I
      * 登录按钮
      */
     private Button button;
+    private Button buttonRegister;
     LoginPresenter mLoginPresenter;
 
     @Override
@@ -42,13 +46,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,I
         userName = (EditText) findViewById(R.id.username);
         passWord = (EditText) findViewById(R.id.password);
         button= (Button) findViewById(R.id.btq);
-
+        buttonRegister=(Button) findViewById(R.id.btregister);
      }
 
     @Override
     public void initListener() {
         super.initListener();
         button.setOnClickListener(this);
+        buttonRegister.setOnClickListener(this);
      }
 
     @Override
@@ -68,6 +73,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,I
                 loginReq.setPassWord(passWord.getText().toString());
                 mLoginPresenter.login(loginReq);
                 break;
+            case R.id.btregister:
+                startToRegister();
+                break;
             default:
                 break;
         }
@@ -81,6 +89,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,I
     @Override
     public void onSuccess(LoginResponse loginResponse) {
         showToast(loginResponse.getResultInfo()+loginResponse.getResutlCode());
+        AppManager.getAppManager().startUI(new Intent(this,Main2Activity.class),this);
     }
 
     @Override
@@ -97,6 +106,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,I
     public void clearEditContent() {
         userName.setText("");
         passWord.setText("");
+    }
+
+    @Override
+    public void startToRegister() {
+        AppManager.getAppManager().startStandardUI(new Intent(this,RegisterActivity.class),this);
     }
 
     @Override

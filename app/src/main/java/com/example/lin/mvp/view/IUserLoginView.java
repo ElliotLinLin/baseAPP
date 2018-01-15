@@ -6,4 +6,5 @@ package com.example.lin.mvp.view;
 
 public interface IUserLoginView extends IMvpView {
     void clearEditContent();
+    void startToRegister();
 }

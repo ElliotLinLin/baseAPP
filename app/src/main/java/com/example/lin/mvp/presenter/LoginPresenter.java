@@ -15,11 +15,15 @@ public class LoginPresenter extends BasePresenter<IUserLoginView> {
 
     private LoginTasksRepository loginTaskDataSource;
 
-    public LoginPresenter() {
+    private IUserLoginView iUserLoginView;
+
+    public LoginPresenter(/*IUserLoginView iUserLoginView*/) {
         loginTaskDataSource = new LoginTasksRepository();
+   //     this.iUserLoginView=iUserLoginView;
     }
 
     public void login(LoginReq loginReq) {
+        mvpView.showLoading();
         loginTaskDataSource.login(loginReq, new LoginTaskDataSource.NetTasksCallback() {
 
             @Override

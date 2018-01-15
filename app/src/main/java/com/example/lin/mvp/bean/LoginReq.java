@@ -23,4 +23,12 @@ public class LoginReq {
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
+
+    @Override
+    public String toString() {
+        return "LoginReq{" +
+                "name='" + name + '\'' +
+                ", passWord='" + passWord + '\'' +
+                '}';
+    }
 }

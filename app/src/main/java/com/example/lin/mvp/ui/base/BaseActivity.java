@@ -27,10 +27,10 @@ public class BaseActivity extends Activity implements ICommonCheck,ICreateInit,I
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presentationLayerFuncHelper = new PresentationLayerFuncHelper(this);
-        initView();
+     /*   initView();
         initData();
         initHeader();
-        initListener();
+        initListener();*/
     }
 
     //start ICommonCheck，后面不会改动了，这里就固定好
@@ -82,7 +82,7 @@ public class BaseActivity extends Activity implements ICommonCheck,ICreateInit,I
 //start IPresenterLayerFunc
     @Override
     public void showToast(String msg) {
-
+    Toast.makeText(BaseActivity.this,msg,Toast.LENGTH_LONG).show();
     }
 
     @Override
